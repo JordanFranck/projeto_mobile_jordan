@@ -1,32 +1,29 @@
-var meuFormulario = document.getElementById("formulario");
-meuFormulario.addEventListener("submit", function(event) {
-  event.preventDefault();
+let vetor = [];
 
-  //Chama a função SelcionarPares
-  SelcionarPares();
+function adicionarValor() {
+  const valor = Number(document.getElementById('valor').value);
+  vetor.push(valor);
 
-});
+  const tabela = document.getElementById('tabelaValores').getElementsByTagName('tbody')[0];
+  const novaLinha = tabela.insertRow();
+  const celula = novaLinha.insertCell(0);
+  celula.textContent = valor;
 
+  document.getElementById('valor').value = '';
+}
 
-//Função SelcionarPares
-function SelcionarPares() {
+function mostrarPares() {
+  const tabela = document.getElementById("tabelaPares").getElementsByTagName("tbody")[0];
   
-  //Captura o que está dentro do primeiro input no formulário
-  //Number - Transforma o texto capturado em Numero
-  let num1 = if(num1%2=1){
-    let num1= num2
+  // Limpa a tabela antes de adicionar novos valores
+  tabela.innerHTML = '';
+
+  for (let i = 0; i < vetor.length; i++) {
+    const valor = vetor[i];
+    if (valor % 2 === 0) {
+      const linha = tabela.insertRow();
+      const celula = linha.insertCell();
+      celula.textContent = valor;
+    }
   }
-
-  //Captura o que está dentro do segundo input no formulário
-  //Number - Transforma o texto capturado em Numero
-  let num2 = Number(document.getElementById("num2").value); 
-  
-  //Realiza a soma do valor que está na variável "num1" com o valor que está na
-  //variável "num2"
-  //E a variável "result" recebe o valor da soma
-  let result = num1 + num2;
-
-  //Aqui vai escrever no input "result" o valor que está armazenado na variável "result"
-  document.getElementById("result").value = result;
-  
 }
